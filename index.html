@@ -29,13 +29,84 @@
         </div>
 
         <div id="nav-right">
-            <a href="">ABOUT</a>
-            <a href="">OUR WORK</a>
-            <a href="">OGBOMOSH0</a>
-            <a href="">PLACE PAPERS</a>
-            <a href="">COMMUNITY</a>
-            <a href="">PARTNERSHIP</a>
+            <div><a href="">ABOUT</a></div>
+            <div class="our-work">
+                <a href="">OUR WORK</a>
+
+                <div class="card1">
+                    <a href="">OVERVIEW</a><br>
+                    <a href="">PLACE FELLOWSHIP</a><br>
+                    <a href="">FUNDS FOR PLACE LAB</a><br>
+                    <a href="">RESEARCH & ADVISORY</a><br>
+                    <a href="">PLACE CONFERENCE</a><br>
+                    <a href="">CARTOGRAPHER SERIES</a><br>
+                    <a href="">STORIES OF OGBOMOSHO</a><br>
+                    <a href="">GARDEN OF BECOMING</a>
+                </div>
+            </div>
+            <div class="our-work">
+                <a href="">OGBOMOSH0</a>
+
+                <div class="card2">
+                    <a href="">OVERVIEW</a><br>
+                    <a href="">EXPLORE ECOSYSTEM BRIEF</a><br>
+                    <a href="">SEE VENTURES</a><br>
+                </div>
+            </div>
+            <div><a href="">PLACE PAPERS</a></div>
+            <div><a href="">COMMUNITY</a></div>
+            <div><a href="">PARTNERSHIP</a></div>
         </div>
+
+        <script>
+            window.addEventListener('scroll', () => {
+            const nav = document.querySelector('nav');
+            nav.classList.toggle('scrolled', window.scrollY > 10);
+                });
+        </script>
+        
+
+<div id="sidebar-overlay"></div>
+
+    <button id="hamburger" aria-label="Open menu">
+    <span></span><span></span><span></span>
+</button>
+
+<div id="sidebar-overlay"></div>
+
+<script>
+    const hamburger = document.getElementById('hamburger');
+    const navRight = document.getElementById('nav-right');
+    const overlay = document.getElementById('sidebar-overlay');
+
+    function openSidebar() {
+        navRight.classList.add('sidebar', 'open');
+        hamburger.classList.add('open');
+        overlay.classList.add('active');
+    }
+
+    function closeSidebar() {
+        navRight.classList.remove('open');
+        hamburger.classList.remove('open');
+        overlay.classList.remove('active');
+    }
+
+    hamburger.addEventListener('click', () => {
+        navRight.classList.contains('open') ? closeSidebar() : openSidebar();
+    });
+
+    overlay.addEventListener('click', closeSidebar);
+
+    // Dropdown accordion — query by ID, no class dependency
+    document.querySelectorAll('#nav-right .our-work > a').forEach(link => {
+        link.addEventListener('click', (e) => {
+            if (window.innerWidth <= 1024) {
+                e.preventDefault();
+                link.closest('.our-work').classList.toggle('expanded');
+            }
+        });
+    });
+</script>
     </nav>
 
     <!-- HERO SECTION -->
@@ -112,9 +183,147 @@
                 <h3><b>Talent is widely distributed across this continent. Opportunity is not.</b></h3>
             </div>
             <div class="vertical-hr"></div>
-            <div class="hero3-container-2"></div>
-        </div>
-    </section>
+            <div class="hero3-container-2">
+                <style>
+                    .mother {
+                        width: 35%;
+                        height: 600px;
+                        /* border: 1px solid green; */
+                        justify-self: center;
+                        display: flex;
+                        flex-direction: column;
+                        align-items: center;
+                        overflow: hidden;
+                        position: relative;
+                        margin: 0 auto;
+                        }
+
+                    .fade-top {
+                        position: absolute;
+                        top: 0; left: 0; right: 0;
+                        height: 200px;
+                        background: linear-gradient(to bottom, #ffffff 0%, transparent 100%);
+                        pointer-events: none;
+                        z-index: 2;
+                    }
+
+                    .fade-bottom {
+                        position: absolute;
+                        bottom: 0; left: 0; right: 0;
+                        height: 200px;
+                        background: linear-gradient(to top, #ffffff 0%, transparent 100%);
+                        pointer-events: none;
+                        z-index: 2;
+                    }
+
+                    .scroll-track {
+                    display: flex;
+                    flex-direction: column;
+                    align-items: center;
+                    width: 100%;
+                    will-change: transform;
+                    }
+
+                    .mother div {
+                    color: #c5bfb6;
+                    font-size: 16.15px;
+                    font-family: "Cormorant Garamond", serif;
+                    font-weight: 300;
+                    font-style: normal;
+                    padding: 10px 0;
+                    text-align: center;
+                    width: 100%;
+                    transition: color 1s, font-size 1s, font-weight 1s, font-style 1s;
+                    line-height: 1.3;
+                    }
+
+                    .mother div.active {
+                    color: #17211e;
+                    font-size: 26px;
+                    font-weight: 600;
+                    font-style: italic;
+                    }
+
+                    .mother div.near {
+                    color: #8a8580;
+                    font-size: 17px;
+                    font-weight: 300;
+                    }
+                </style>
+
+            <div class="mother">
+                <div class="fade-top"></div>
+                <div class="fade-bottom"></div>
+                <div class="scroll-track" id="track"></div>
+            </div>
+
+            <script>
+                const cities = [
+                "Kigoma","Yendi","Kabba","Butare","Azare","Owerri","Bejata","Oma Bay","Awka",
+                "King Williams Town","Dilla","Blan Tyre","Port Sudan","Nakuru","Man","Ariana",
+                "Port Elizabeth","Uroni","Fez","Koboko","Desi","Sowezi","Minna","Masvingo",
+                "Uyo","Tillaberry","Victory Falls","Paarl","Suleja","Kibnugo","Marrakech",
+                "Kenittra","Oujidda","Balaka","Salima","Ilesa","Thika","Gusau","Lawra",
+                "Umuahia","Ndola","Annaba"
+                ];
+
+                    const track = document.getElementById('track');
+                    const ITEM_H = 44;
+                    const CONTAINER_H = 600;
+                    const CENTER_Y = CONTAINER_H / 2;
+
+                    const repeated = [...cities, ...cities, ...cities];
+                    repeated.forEach(name => {
+                    const d = document.createElement('div');
+                    d.textContent = name;
+                    track.appendChild(d);
+                    });
+
+                    const items = track.querySelectorAll('div');
+                    const totalSingle = cities.length * ITEM_H;
+                    let startOffset = -(cities.length * ITEM_H) + CENTER_Y - ITEM_H / 2;
+                    let offsetY = startOffset;
+                    track.style.transform = `translateY(${offsetY}px)`;
+
+                    let lastTime = null;
+                    const speed = 30;
+
+                function updateClasses() {
+                const motherTop = document.querySelector('.mother').getBoundingClientRect().top;
+                items.forEach(el => {
+                    const elTop = el.getBoundingClientRect().top;
+                    const elCenter = elTop + ITEM_H / 2;
+                    const dist = Math.abs(elCenter - (motherTop + CENTER_Y));
+                    el.className = '';
+                    if (dist < ITEM_H * 0.6) {
+                    el.classList.add('active');
+                    } else if (dist < ITEM_H * 1.8) {
+                    el.classList.add('near');
+                    }
+                });
+                }
+
+                function animate(ts) {
+                if (!lastTime) lastTime = ts;
+                const dt = (ts - lastTime) / 1000;
+                lastTime = ts;
+
+                offsetY -= speed * dt;
+
+                if (offsetY < startOffset - totalSingle) {
+                    offsetY += totalSingle;
+                }
+
+                track.style.transform = `translateY(${offsetY}px)`;
+                updateClasses();
+                requestAnimationFrame(animate);
+                }
+
+                requestAnimationFrame(animate);
+            </script>
+                        </div>
+                    </div>
+                </section>
 
     <section id="hero4"><br><br><br><br><br><br>
         <div class="hero4-div1">
@@ -235,7 +444,7 @@
                         fellowships, mentorships, and learning communities.
                     </p><br>
 
-                    <a href="">EXPLORE</a>
+                    <a href="">EXPLORE <img src="images/arrow-sm-right (1).svg" alt="" width="15px" height="15px"></a>
                 </div>
                 <div class="hero6-sub-2">
                     <span>02 / PLACE</span><br><br>
@@ -247,7 +456,7 @@
                         of what place-based transformation looks like
                     </p><br>
 
-                    <a href="">EXPLORE</a>
+                    <a href="">EXPLORE <img src="images/arrow-sm-right (1).svg" alt="" width="15px" height="15px"></a>
                 </div>
                 <div class="hero6-sub-3">
                     <span>03 / SYSTEMS & CAPITAL</span><br><br>
@@ -259,7 +468,7 @@
                         growth.
                     </p><br>
 
-                    <a href="">EXPLORE</a>
+                    <a href="">EXPLORE <img src="images/arrow-sm-right (1).svg" alt="" width="15px" height="15px"></a>
                 </div>
                 <div class="hero6-sub-4">
                     <span>04 / STORY & COMMUNITY</span><br><br>
@@ -271,7 +480,7 @@
                         shared language for place-based work.
                     </p><br>
 
-                    <a href="">EXPLORE</a>
+                    <a href="">EXPLORE <img src="images/arrow-sm-right (1).svg" alt="" width="15px" height="15px"></a>
                 </div>
             </div>
         </div>
@@ -467,7 +676,7 @@
 
             <div class="hero9-div2">
                 <a href="" class="rte">READ LATEST ESSAY</a>
-                <a href="" class="elp">EXPLORE ALL PAPERS</a>
+                <a href="" class="elp">EXPLORE ALL PAPERS <img src="images/arrow-sm-right (1).svg" alt="" width="30px" height="20px"></a>
             </div>
         </div>
     </section>
@@ -652,34 +861,123 @@
             </h2><br><br><br>
             
             <div class="hero11-specs-div2">
-                <a href="" class="people-type">
-                    <h3>Builders</h3>
+                <div class="builders">
+                    <a href="" class="people-type">
+                        <h3>Builders</h3>
 
-                    <p>                          
-                        Individuals commited to building in specific <br>
-                        places overtime,entrepreneurs,designers, <br>
-                        civic leaders.                        
-                    </p>
+                        <p>                          
+                            Individuals commited to building in specific <br>
+                            places overtime,entrepreneurs,designers, <br>
+                            civic leaders.                        
+                        </p>
 
-                    <span>JOIN THE COMMUNITY</span>
-                </a>
-                <a href="" class="people-type">
-                    <h3></h3>
+                        <span>JOIN THE COMMUNITY <img src="images/arrow-sm-right (1).svg" alt="" width="12px" height="12px"></span>
+                    </a>
+                </div>
 
-                    <p></p>
+                <div class="funds">
+                    <a href="" class="people-type">
+                        <h3>Funders & Investors</h3>
 
-                    <span></span>
-                </a>
-                <a href="" class="people-type">
-                    <h3></h3>
+                        <p>                          
+                            Instituions seeking long-term, system-level <br>
+                            impact beyond short-term interventions.
+                        </p>
 
-                    <p></p>
+                        <span>PARTNER WITH US <img src="images/arrow-sm-right (1).svg" alt="" width="12px" height="12px"></span>
+                    </a>
+                </div>
 
-                    <span></span>
-                </a>
+                <div class="partners">
+                    <a href="" class="people-type">
+                        <h3>Partners</h3>
+
+                        <p>                          
+                            Organizations working in urban <br>
+                            developments, innovation, and economic <br>
+                            transformation across Africa.                       
+                        </p>
+
+                        <span>EXPLORE PATHWAYS <img src="images/arrow-sm-right (1).svg" alt="" width="12px" height="12px"></span>
+                    </a>
+                </div>
             </div>
         </div>
     </section>
+
+    <section class="hero12"><br><br><br><br><br><br>
+        <div class="hero12-specs">
+            <p class="invite">AN INVITATION</p>
+
+            <h2>
+                The work of place is long. <br>
+
+                <span class="sep-sp">It is also urgent.</span>
+            </h2>
+
+            <p class="para-2nd">There is a place for you in this collective</p>
+
+            <div class="hero12-anchor">
+                <a href="" class="anchor-1">JOIN THE COLLECTIVE <img src="images/arrow-sm-right (1).svg" alt="" width="20px" height="20px"></a>
+
+                <a href="" class="anchor-2">PARTNER WITH US <img src="images/arrow-sm-right (1).svg" alt="" width="20px" height="20px"></a>
+            </div>
+        </div>
+    </section>
+
+
+    <footer><br><br>
+        <div class="foot-div">
+            <div class="contact-dets">
+                <div class="cd1">
+                    <p class="tpc">THE PLACE COLLECTIVE</p>
+
+                    <p class="tpc-writeup">
+                        Advancing the practice and discipline of place-anchored leadership, <br>
+                        enterprise, and capital across Africa's secondary cities.
+                    </p>
+
+                    <p class="tpc-by">By Ennovate Lab</p><br>
+
+                    <div class="cd1-svgs">
+                        <img src="images/iconoir--youtube.svg" alt="" width="15px" height="15px">
+
+                        <img src="images/bxl--twitter-x.svg" alt="" width="15px" height="15px">
+
+                        <img src="images/iconoir--facebook.svg" alt="" width="15px" height="15px">
+
+                        <img src="images/iconoir--youtube.svg" alt="" width="15px" height="15px">
+                    </div>
+                </div>
+                <div class="cd2">
+                    <p class="cd2-nav">NAVIGATE</p>
+                    
+                    <div class="cd2-a">
+                        <a href="">About</a>
+                        <a href="">Our Work</a>
+                        <a href="">Ogbmosho</a>
+                        <a href="">Place Papers</a>
+                        <a href="">Community</a>
+                    </div>
+                </div>
+                <div class="cd3">
+                    <p class="cd2-nav">CONNECT</p>
+
+                    <div class="cd2-a">
+                        <a href="">Partner With Us</a>
+
+                        <a href="">Contact</a>
+                    </div>
+                </div>
+            </div>
+
+            <hr class="line-hr"><br>
+
+            <div class="rights-reserved">
+                <p>@2026 The Place Collective. All rights reserved</p>
+            </div>
+        </div>
+    </footer>
 
 
 
