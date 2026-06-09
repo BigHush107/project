@@ -627,6 +627,7 @@ hr{
 .hero4-div4-para1{
     /* justify-self: center; */
     position: absolute;
+    text-align: center;
     left: 50%;
     color: #17211E;
     font-size: 11px;
@@ -636,6 +637,7 @@ hr{
 
 .hero4-div4-para2{
     position: absolute;
+    text-align: center;
     left: 160px;
     width: 850px;
     /* border: 1px solid; */
@@ -654,6 +656,7 @@ hr{
     position: absolute;
     left: 50%;
     top: 280px;
+    align-self: center;
 }
 
 .hero4-div4-para3{
@@ -663,6 +666,7 @@ hr{
     color: #17211E;
     font-size: 26.4px;
     font-weight: 200;
+    text-align: center;
     line-height: 30px;
     font-family: "Cormorant Garamond", serif;
 }
@@ -673,6 +677,7 @@ hr{
     position: absolute;
     left: 50%;
     top: 470px;
+    align-self: center;
 }
 
 .hero4-div4-para4{
@@ -682,6 +687,7 @@ hr{
     font-size: 18px;
     font-weight: 200;
     color: #17211E;
+    text-align: center;
     font-family: "Cormorant Garamond", serif;
 }
 
@@ -712,6 +718,7 @@ hr{
     font-weight: 500;
     font-family: "Cormorant Garamond", serif;
     line-height: 54px;
+    text-align: center;
 }
 
 .hero5-div{
@@ -1551,11 +1558,11 @@ hr{
 }
 
 .builders{
-    width: 33.33%;
-    height: 60dvh;
+    width: 100%;
+    height: 40dvh;
     border: 0.1px solid;
     position: relative;
-    padding-top: 60px;
+    padding-top: 20px;
 }
 
 .builders::before{
@@ -1580,12 +1587,12 @@ hr{
 }
 
 .funds{
-    width: 33.33%;
-    height: 60dvh;
+    width: 100%;
+    height: 40dvh;
     border: 0.1px solid;
-    border-left: none;
+    border-top: none;
     position: relative;
-    padding-top: 60px;
+    padding-top: 20px;
 }
 
 .funds::before{
@@ -1610,12 +1617,12 @@ hr{
 }
 
 .partners{
-    width: 33.33%;
-    height: 60dvh;
+    width: 100%;
+    height: 40dvh;
     border: 0.1px solid;
-    border-left: none;
+    border-top: none;
     position: relative;
-    padding-top: 60px;
+    padding-top: 20px;
 }
 
 .partners::before{
@@ -1869,9 +1876,7 @@ footer{
 }
 
 
-/* ============================================
-   MOBILE RESPONSIVE STYLES
-   ============================================ */
+/*  MOBILE RESPONSIVE STYLES */
  
 @media (max-width: 768px) {
  
@@ -2083,6 +2088,7 @@ footer{
   .hero4-div4-para2 {
     font-size: 32px;
     line-height: 38px;
+    font-weight: 700;
   }
  
   .hero4-div4-para3 {
@@ -2185,15 +2191,18 @@ footer{
   }
  
   .hero7-div2 {
+    display: flex;
+    flex-direction: column;
     flex-wrap: wrap;
     height: auto;
     gap: 0;
   }
  
   .hero7-div2 div {
-    width: 48%;
+    width: 100%;
     height: auto;
     padding: 20px 0;
+    border: none;
   }
  
   .hero7-numbers span {
@@ -2220,7 +2229,9 @@ footer{
  
   .reports-image {
     width: 100%;
-    height: 240px;
+    height: 500px;
+    /* object-fit: cover; */
+
   }
  
   .reports-writeup {
@@ -2349,6 +2360,7 @@ footer{
   }
  
   .hero11-specs-div2 {
+    width: 100%;
     flex-direction: column;
     height: auto;
   }
